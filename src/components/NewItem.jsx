@@ -8,15 +8,18 @@ function NewItem(props){
         setInputText((preVal)=>{return({...preVal,[name]:value})});
     }
     return(
-        <div className="row text-center m-2">
-            <div col-3 text-center>
-            <input className="col m-2" type="text" name="title" value={inputText.title} onChange={handleChange} placeholder="Heading" />
-            <input className="col m-2" type="text" name="subtitle" value={inputText.subtitle} onChange={handleChange} placeholder="Subheading" />
-            <input className="col m-2" type="text"  name="text" value={inputText.text} onChange={handleChange} placeholder="Content" />
-            <button className="col-2 m-2 btn btn-dark" 
+        <div className="card mx-auto my-1" style={{width:"18rem"}}>
+            <div className="card-header text-center bg-warning">
+                Add New
+            </div>
+            <div text-center className="card-body">
+            <input className="" type="text" name="title" value={inputText.title} onChange={handleChange} placeholder="Heading" />
+            <input className="" type="text" name="subtitle" value={inputText.subtitle} onChange={handleChange} placeholder="Subheading" />
+            <input className="" type="text"  name="text" value={inputText.text} onChange={handleChange} placeholder="Content" />
+            <button className="btn btn-outline-warning" 
             onClick={()=>{props.addNew(inputText);
                             setInputText({title:"",subtitle:"",text:""});
-            }}>Add</button>
+            }}>📌</button>
             </div>
         </div>
     )
