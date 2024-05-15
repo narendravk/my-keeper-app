@@ -6,13 +6,19 @@ import ToDoItem from "./components/ToDoItem";
 import { useEffect } from "react";
 import ScoreBoard from "./components/Score";
 
-let savedList = JSON.parse(localStorage.toDoList);
-console.log(savedList);
+try {
+  var savedList = JSON.parse(localStorage.toDoList);
+  console.log(savedList);
+} catch (error) {
+  console.log(error);
+  savedList = [];
+}
+
 
 function App() {
 
   const [itemList,setItemList] = useState(savedList);
-  const [taskCount,setTaskCount] = useState(0);
+  const [taskCount,setTaskCount] = useState(savedList.length);
 
   function addNewItem(inputText){
     setItemList((preItems)=>{return [...preItems,inputText];})
@@ -35,11 +41,14 @@ function App() {
   return (
     <div className="">
       <Header />
-      <ScoreBoard count={taskCount} />
+      <div className="text-center">
+      
+      </div>
       <NewItem addNew={addNewItem} />
+      <ScoreBoard count={taskCount} />
       <div className="row">
         {itemList.map((item,index)=>{
-          return <ToDoItem title={item.title} id={index} key={index} subtitle={item.subtitle} cardText={item.text} onCheck={deleteItem} />
+          return <ToDoItem title={item.title} id={index} key={index} cardText={item.text} onCheck={deleteItem} />
         })}
       </div>
       <Footer />

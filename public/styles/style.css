@@ -1,9 +1,18 @@
 body{
     background-color: black;
-    background-image: url('');
+    background-image: url('/images/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+    background-attachment: fixed;
 }
 
 input {
     border: none;
     outline: none;
+}
+
+a:link{
+    text-decoration: none;
+    color:#0d6efd;
 }
