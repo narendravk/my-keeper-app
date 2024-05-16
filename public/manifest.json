@@ -1,12 +1,12 @@
 {
   "manifest_version":3,
   "name": "NKeeper",
-  "description": "NKeeper: Yaashodaa's ToDo App.(Chrome Extension)",
+  "description": "NKeeper:ToDo App (Chrome Extension)",
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
   "icons":{"48":"favicon.ico"},
-  "version":"1.0.1",
+  "version":"1.0.2",
   "action": {
     "default_popup":"index.html",
     "default_title":"NKeeper"
