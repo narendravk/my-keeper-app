@@ -6,6 +6,7 @@ import ToDoItem from "./components/ToDoItem";
 import { useEffect } from "react";
 import ScoreBoard from "./components/Score";
 
+var today = new Date();
 try {
   var savedList = JSON.parse(localStorage.toDoList);
 } catch (error) {
@@ -85,7 +86,7 @@ function App() {
       <ScoreBoard count={taskCount} />
       <div className="row">
         {itemList.map((item,index)=>{
-          return <ToDoItem title={item.title} id={index} key={index} cardText={item.text} onCheck={deleteItem} />
+          return <ToDoItem title={item.title} subtitle={Math.round(Math.abs(today.getTime()-item.date)/(1000*60*60*24))+" days ago"} id={index} key={index} cardText={item.text} onCheck={deleteItem} />
         })}
       </div>
       <Footer />

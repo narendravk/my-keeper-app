@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 
 function NewItem(props){
-    const [inputText,setInputText] = useState({title:"",text:""});
+    const [inputText,setInputText] = useState({title:"",text:"",date:new Date().getTime()});
 
     function handleChange(e){
         const name = e.target.name;
