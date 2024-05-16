@@ -8,10 +8,29 @@ import ScoreBoard from "./components/Score";
 
 try {
   var savedList = JSON.parse(localStorage.toDoList);
-  console.log(savedList);
 } catch (error) {
   console.log(error);
   savedList = [];
+}
+
+try {
+   var profileImgUrl = JSON.parse(localStorage.profileImg);
+} catch (error) {
+  console.log(error);
+  profileImgUrl = "/images/user.jpg";
+}
+
+try {
+  var bgImgUrl = JSON.parse(localStorage.bgImage)
+} catch (error) {
+ console.log(error);
+ bgImgUrl = '/images/bg1.jpg';
+}
+try {
+  var userName = JSON.parse(localStorage.userName);
+} catch (error) {
+ console.log(error);
+ userName = "User";
 }
 
 
@@ -19,6 +38,9 @@ function App() {
 
   const [itemList,setItemList] = useState(savedList);
   const [taskCount,setTaskCount] = useState(savedList.length);
+  const [user,setUser] = useState({name:userName,img:profileImgUrl,bg:bgImgUrl})
+
+
 
   function addNewItem(inputText){
     setItemList((preItems)=>{return [...preItems,inputText];})
@@ -32,6 +54,24 @@ function App() {
     localStorage.setItem('toDoList',JSON.stringify(itemList))
   },[itemList]);
 
+  useEffect(()=>{
+    localStorage.setItem('userName',JSON.stringify(user.name))
+  },[user.name]);
+
+  useEffect(()=>{
+    localStorage.setItem('profileImg',JSON.stringify(user.img))
+  },[user.img]);
+
+  useEffect(()=>{
+    localStorage.setItem('bgImage',JSON.stringify(user.bg))
+  },[user.bg]);
+
+  function handleChangeUser(event){
+    const name = event.target.name;
+    const url = prompt("Enter image URL/Name :");
+      setUser((preValues)=>{console.log(user);return {...preValues,[name]:url}})
+    };
+  
   function deleteItem(id){
     setItemList((prevItems)=>{
       return prevItems.filter((item,index)=>index!==id)
@@ -39,12 +79,9 @@ function App() {
   }
 
   return (
-    <div className="">
-      <Header />
-      <div className="text-center">
-      
-      </div>
-      <NewItem addNew={addNewItem} />
+    <div className="bgdiv" style={{backgroundImage:`url(${user.bg})`}}>
+      <Header username={user.name} ChangeName={handleChangeUser} ChangeImage={handleChangeUser} ChangeBG={handleChangeUser} />
+      <NewItem addNew={addNewItem} profileImage={user.img} username={userName} />
       <ScoreBoard count={taskCount} />
       <div className="row">
         {itemList.map((item,index)=>{
