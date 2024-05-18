@@ -85,7 +85,7 @@ function App() {
       <NewItem addNew={addNewItem} profileImage={user.img} username={userName} />
       <ScoreBoard count={taskCount} />
       <div className="row">
-        {itemList.map((item,index)=>{
+        {itemList.map((item,index)=>{ console.log(item.date);
           return <ToDoItem title={item.title} subtitle={Math.round(Math.abs(today.getTime()-item.date)/(1000*60*60*24))+" days ago"} id={index} key={index} cardText={item.text} onCheck={deleteItem} />
         })}
       </div>
